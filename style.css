@@ -1,0 +1,234 @@
+body {
+  background-color: #eee;
+  color: #333;
+  font-family: arial;
+  font-size: 16px;
+}
+h1, h2 {
+   margin: 0 20px;
+}
+p { margin: 0.5em; }
+section {
+  position: relative;
+  margin:0;
+  padding:0;
+}
+body > header,
+body > nav,
+body > section,
+body > footer  {
+  margin: 0 auto;
+  width: 80%;
+  padding: 0;
+}
+body > header,
+body > footer {
+   background-color: #333;
+   color: #eee;
+}
+body > nav {
+  background-color: #ddd;
+  padding: 5px 0;
+}
+body > footer {
+  padding: 1ex 0;
+  margin-top: 1ex;
+}
+
+/* sekcja */
+section  > nav {
+  padding-top: 10px;
+}
+section  > nav table {
+  width: 100%;
+}
+section  > nav td {
+  text-align:center;
+  width: 33%;
+}
+section footer p {
+   padding:0;
+   margin:0;
+}
+
+/* linki - przyciski */
+nav  a,
+article > footer a{
+  margin: 0;
+  padding: 1px;
+  border:  1px solid #333;
+  border-radius: 5px;
+  background-color: #ccc;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 1px #000;
+  display: inline-block;
+  width: 100px;
+}
+.user-info a{
+  margin-right: 10px;
+  padding: 1px;
+  border:  1px solid #333;
+  border-radius: 5px;
+  background-color: #ccc;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 1px #000;
+  display: inline-block;
+}
+nav  a:hover,
+article > footer a:hover, .user-info a:hover {
+  background-color: #eee;
+  color: #233;
+  text-shadow: 0 1px #fff;
+  box-shadow: 1px 1px 3px #333;
+}
+section  > nav a {
+  width: 200px;
+  background-color: #666;
+}
+
+article {
+   padding: 0;
+   margin: 1ex 0;
+   border: 1px solid #aaa;
+   border-radius: 0 0 5px 5px;
+   background-color: #ddd;
+}
+article > div {
+   background-color: #fff;
+   padding: 1ex;
+}
+article > header {
+   padding: 1ex;
+}
+article > header >h2 {
+   padding: 0;
+   margin: 0;
+}
+article > footer {
+   text-align: right;
+   padding: 1ex;
+   font-size: 80%;
+}
+article > footer > nav{
+   float: left;
+   padding: 0;
+}
+
+form {
+   width: 100%;
+   padding: 0;
+   margin: 0;
+   background-color: #ddd;
+   border-radius: 5px;
+   text-align: center;
+}
+form > header h2 {
+   padding: 1ex;
+   margin: 0;
+   text-align: left;
+}
+form input,
+form textarea{
+  width: 95%;
+  margin: 1ex 0;
+  border-radius: 5px;
+  padding: 1ex;
+  font-family: arial;
+  font-size: 16px;
+  color: #003;
+  border: 1px solid #888;
+}
+form button {
+  font-weight: bold;
+  background-color: #888;
+  margin: 10px auto;
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  font-size: 120%;
+  text-shadow: 1px 1px #000;
+  color: #eee;
+}
+ 
+footer {
+  text-align: center;
+  font-size: 80%;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.topic {
+  text-align: left;
+}
+.topic header {
+  color: #eee;
+  background-color: #666;
+}
+.danger:hover { 
+  background-color: red; 
+  color: #eee;
+  text-shadow: 0 1px #003; 
+}
+
+section.user-info table{
+  width: 80%;
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  unicode-bidi: isolate;
+  border-spacing: 2px;
+  border-color: gray;
+}
+section.user-info table td,th{
+  text-align: center;
+  padding: 5px;
+}
+
+section.user-info table *{
+  border: 1px solid black;
+}
+section.user-info table a{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+form.list{
+  width: 40%;
+  background-color:#eee;
+  display: inline;
+  margin-right: 20px;
+}
+form.list button:hover{
+  background-color: #eee;
+  color: #233;
+  text-shadow: 0 1px #fff;
+  box-shadow: 1px 1px 3px #333;
+  cursor: pointer;
+}
+form.list button:hover{
+  background-color: #eee;
+  color: #233;
+  text-shadow: 0 1px #fff;
+  box-shadow: 1px 1px 3px #333;
+  cursor: pointer;
+}
+.user-info nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  margin-right: auto; /* Przesuwa formularz na lewą stronę */
+}
+
+.user-info {
+  margin-left: auto; /* Przesuwa resztę treści na prawą stronę */
+}
