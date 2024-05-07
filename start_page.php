@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Zadanie 1 - WWW i języki skryptowe</title>
+    <title>Zadanie 1 - WWW i języki skryptowe--</title>
     <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
