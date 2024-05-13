@@ -166,68 +166,53 @@ function get_next_topic_id( $topicid,
 
 //kasowanie tematu 
 function delete_topic($topic_id_or_login, $topic_file='tematy.txt', $posts_file='wypowiedzi.txt', $separator=','){
-   if($data=file($topic_file)){
-      foreach($data as $k=>$v){
+   if ($data = file($topic_file)) {
+      $data2 = [];
+      $id = false;
+      foreach ($data as $k => $v) {
          $r = explode($separator, trim($v));
-            if($r[0]==$topic_id_or_login){
-               unset($data[$k]);
-               $post_data=file($posts_file);
-               if($post_data=file($posts_file)){
-                  foreach($post_data as $k=>$v){
-                     $r = explode($separator, trim($v));
-                  if($r[1]==$id_topic){
-                     $id_post = $r[0];
-                     unset($post_data[$k]);  
-                  }elseif(isset($id_post) and $r[0]>$id_post){
-                     $post_data[$k] =  implode($separator, [intval($r[0])-1, $r[1], $r[2], $r[3],$r[4],"\n"])."\n";
-                  }
-                  if($r[1]>$id_topic){
-                     $post_data[$k] =  implode($separator, [$r[0], intval($r[1])-1, $r[2], $r[3],$r[4]])."\n";
+         if ($r[0] == $topic_id_or_login) {
+            $id = true;
+            unset($data[$k]);
+            if ($post_data = file($posts_file)) {
+               foreach ($post_data as $key => $v) {
+                  $p = explode($separator, trim($v));
+                  if ($p[1] == $id_topic) {
+                     unset($post_data[$key]);
                   }
                }
-               file_put_contents($posts_file,implode("", $post_data));
+               file_put_contents($posts_file, implode("", $post_data));
+            }
+         } else if ($r[3] == $topic_id_or_login) {
+            $other_post = true;
+            if ($post_data = file($posts_file)) {
+               foreach ($post_data as $v) {
+                  $p = explode($separator, trim($v));
+                  if ($p[3] != $topic_id_or_login and $p[1] == $r[0]) {
+                     $other_post = false;
+                     break;
+                  }
+               }
+            }
+            if ($other_post == true) {
+               if ($post_data = file($posts_file)) {
+                  foreach ($post_data as $key => $v) {
+                     $p = explode($separator, trim($v));
+                     if ($p[1] == $id_topic) {
+                        unset($post_data[$key]);
+                     }
+                  }
+                  file_put_contents($posts_file, implode("", $post_data));
+               }
+            }else{
+               array_push($data2, $data[$k]);
             }
          }
-         else if($r[3]==$topic_id_or_login){
-               $flag = true;
-               $id_post = $r[0];
-               if($post_data = file($posts_file)){
-                  foreach($post_data as $k => $value){
-                     $r = explode($separator, $v);
-                     if($r[1]==$id_post and $r[3]!=$topic_id_or_login){
-                        $flag=false;
-                     }
-                  }
-                  if($flag==true){
-                     unset($data[$k]);
-                     $post_data=file($posts_file);
-                     if($post_data=file($posts_file)){
-                        foreach($post_data as $k=>$v){
-                           $r = explode($separator, trim($v));
-                           if($r[1]==$id_topic){
-                              $id_post = $r[0];
-                              unset($post_data[$k]);  
-                     }elseif(isset($id_post) and $r[0]>$id_post){
-                           $post_data[$k] =  implode($separator, [intval($r[0])-1, $r[1], $r[2], $r[3],$r[4]])."\n";
-                     }
-                        if($r[1]>$id_topic){
-                           $post_data[$k] =  implode($separator, [$r[0], intval($r[1])-1, $r[2], $r[3],$r[4]])."\n";
-                     }
-                     }
-                  file_put_contents($posts_file,implode("", $post_data));
-                  }
-               }
-         }
       }
-         else if(isset($id_topic) and $r[0]>$id_topic){
-            $data[$k][0] = intval($data[$k][0]) - 1; 
-         }
-      }
-      return file_put_contents($topic_file,implode("", $data));
-   }  
-   else{
+      return $id ? file_put_contents($topic_file, implode("", $data)):file_put_contents($topic_file, implode("", $data2));
+   } else {
       return false;
-   }   
+   } 
 }
 //Edytowanie tematu
 function edit_topic($topic_id, $topic_file, $separator){
@@ -384,20 +369,18 @@ function update_post( $postid, $post, $username,
 // funkcja usuwa z pliku dane dla wypowiedzi o danym $id albo loginie
 function delete_post( $id_or_login, $datafile="wypowiedzi.txt", $separator=",")
 {
-   if($data=file( $datafile )){
-      foreach($data as $k=>$v){
-         $r = explode( $separator, trim($v));
-         if(($r[0]==$id_or_login) or ($r[3]==$id_or_login)){
+   if ($data = file($datafile)) {
+      foreach ($data as $k => $v) {
+         $r = explode($separator, trim($v));
+         if (($r[0] == $id_or_login) or ($r[3] == $id_or_login)) {
             $id_post = $r[0];
-            unset($data[$k]);  
-         }else if((isset($id_post) and $r[0]>$id_post)){
-            $data[$k][0] = intval($data[$k][0])-1;
-         }   
+            unset($data[$k]);
+         }
       }
-      return file_put_contents($datafile,implode("", $data)); 
-   }else{
+      return file_put_contents($datafile, implode("", $data));
+   } else {
       return FALSE;
-   }   
+   } 
 }
 
 //------------------------------------------------------------------------------
